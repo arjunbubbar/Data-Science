@@ -49,3 +49,66 @@ print (titanicdf ['Fare'])
 print (titanicdf ['Fare'].mean ())
 
 print (titanicdf ['Pclass'].value_counts ())
+
+# Get values of multiple columns
+
+print (titanicdf [["Name","Age","Fare"]])
+
+# Statistical summary of all numerical columns, spread etc.
+
+print (titanicdf.describe ())
+
+# Filtering the rows, conditions
+
+print (titanicdf [titanicdf ['Age'] > 18])
+
+print (titanicdf [titanicdf ['Pclass'] == 1])
+
+# Multiple conditions, use & (and), | (or)
+ 
+print (titanicdf [(titanicdf ['Sex'] == 'female') & (titanicdf ['Pclass'] == 1)])
+
+print (titanicdf [(titanicdf ['Age'] < 18) | (titanicdf ['Survived'] == 1)])
+
+# Index based slicing - get part of rows and columns [sr:er, sc:ec], does not show last index, can also list indices
+
+print (titanicdf.iloc [234:240, 3:6])
+
+print (titanicdf.iloc [[2,4,5,6,764,342],[5,2,3]])
+
+# Conditional slicing [Condition for rows, [column names in list] ]
+
+print (titanicdf.loc [titanicdf ['Age'] > 18, ['Sex', 'Age', 'Pclass']])
+
+# Changing values
+
+titanicdf.loc [0:2, 'Name'] = ['John', 'Jack', 'Elizabeth']
+
+print (titanicdf.head ())
+
+# Add a column 
+
+titanicdf ['Discounted Fare'] = titanicdf ['Fare'] / 2
+
+print (titanicdf.head ())
+
+# Rename column (inplace alters original dataset, makes changes permanent)
+
+titanicdf.rename (columns = {'Pclass':'Passenger Class', 'Fare': 'Ticket Price'}, inplace = True) 
+
+print (titanicdf.columns)
+
+# Save dataframe changes at csv
+# titanicdf.to_csv ('titanic2.csv')
+
+# Sorting in increasing or decreasing order (by = some category)
+
+print (titanicdf.sort_values (by = 'Passenger Class'))
+
+print (titanicdf.sort_values (by = 'Passenger Class', ascending = False))
+
+# Replacing a value (either specify on which column or on whole dataframe)
+
+titanicdf ['Sex'].replace ({'male':'m','female':'f'}, inplace = True)
+
+print (titanicdf ['Sex'])
