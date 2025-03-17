@@ -112,3 +112,34 @@ print (titanicdf.sort_values (by = 'Passenger Class', ascending = False))
 titanicdf ['Sex'].replace ({'male':'m','female':'f'}, inplace = True)
 
 print (titanicdf ['Sex'])
+
+# Grouping data, according to a category
+
+PClassgroups = titanicdf.groupby ('Passenger Class')
+
+print (PClassgroups)
+
+# Grouping followed by aggregation, e.g. mean, min, max, median
+
+print (PClassgroups.count ())
+
+print (PClassgroups ['Age'].mean ())
+
+# Grouping by multiple categories
+
+PCsurvived = titanicdf.groupby (['Passenger Class', 'Survived'])
+
+print (PCsurvived.max ())
+
+# Aggregated functions on multiple columns, string for the functions no need to call
+
+print (titanicdf.agg ({'Age':['min','max','mean'], 'Ticket Price': ['mean']}))
+
+# Operation on text data, e.g. a name, string operations - length, part, upper or lower case
+
+print (titanicdf ['Name'].str.lower ())
+
+# Turns everything into a list of items with split e.g. [Arjun,Bubbar], retreive any part with get function, with names get first name, last name etc.
+
+print (titanicdf ['Name'].str.split ().str.get (-1))
+
