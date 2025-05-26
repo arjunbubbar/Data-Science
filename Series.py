@@ -36,4 +36,7 @@ print (ser.value_counts ())
 
 print (ser.sort_values ())
 
+# For descending order - set ascending to false
+
+print (ser.sort_values (ascending=False)) 
 
